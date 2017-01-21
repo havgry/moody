@@ -1,0 +1,31 @@
+{
+  "name": "moody",
+  "version": "1.0.0",
+  "description": "Mood detection thingie with Watson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magnushavgry/moody.git"
+  },
+  "keywords": [
+    "Mood",
+    "detection",
+    "Watson",
+    "IBM",
+    "Bluemix"
+  ],
+  "author": "Magnus Havgry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magnushavgry/moody/issues"
+  },
+  "homepage": "https://github.com/magnushavgry/moody#readme",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.14.0",
+    "watson-developer-cloud": "^2.15.2"
+  }
+}
