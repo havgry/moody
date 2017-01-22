@@ -2,6 +2,7 @@
 (function(){
 
 	var inputElement = document.getElementById('inputty');
+	var inputContainerElement = document.querySelector('.input-wrapper');
 	var chartElement = document.getElementById('chart');
 	var chart;
 
@@ -11,11 +12,15 @@
 
 		// Make sure the input value is something slightly meaningful
 		if (inputValue.length > 0 && inputValue.indexOf(' ') >= 0) {
+
+			inputContainerElement.classList.add('loading');
+
 			var encodedValue = encodeURI(inputValue);
 
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', '/tones?text=' + encodedValue);
 			xhr.onload = function () {
+				inputContainerElement.classList.remove('loading');
 				if (xhr.status === 200) {
 			    	success(JSON.parse(xhr.responseText));
 				}
