@@ -4,15 +4,15 @@
   "description": "Mood detection thingie with Watson",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "node-sass --output-style compressed --output public/css scss"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/magnushavgry/moody.git"
   },
   "keywords": [
-    "Mood",
-    "detection",
+    "Mood detection",
     "Watson",
     "IBM",
     "Bluemix"
@@ -29,5 +29,8 @@
     "express": "^4.14.0",
     "normalize.css": "^5.0.0",
     "watson-developer-cloud": "^2.15.2"
+  },
+  "devDependencies": {
+    "node-sass": "^4.3.0"
   }
 }
