@@ -17,7 +17,10 @@ var toneAnalyzer = watson.tone_analyzer({
 	password: process.env.WATSON_TONE_ANALYZER_PASSWORD,
 	version: 'v3',
 	version_date: '2016-05-19',
-	sentences: false
+	sentences: false,
+	headers: {
+		'X-Watson-Learning-Opt-Out': '1'
+	}
 });
 
 app.get('/tones', function(request, response){
