@@ -73,7 +73,7 @@
 		        },
 		        animation: {
 			        onComplete: function () {
-		        		this.chart.canvas.classList.remove('animate-height');
+		        		this.chart.canvas.classList.remove('not-initialized');
 				    }
 		    	},
 		    	tooltips: {
