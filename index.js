@@ -7,6 +7,10 @@ var watson = require('watson-developer-cloud');
 
 dotenv.load();
 
+// Serve static files
+app.use(express.static(__dirname + '/public'));
+app.use('/css/normalize.css', express.static(__dirname + '/node_modules/normalize.css/normalize.css'));
+
 var toneAnalyzer = watson.tone_analyzer({
 	username: process.env.WATSON_TONE_ANALYZER_USERNAME,
 	password: process.env.WATSON_TONE_ANALYZER_PASSWORD,
@@ -14,8 +18,6 @@ var toneAnalyzer = watson.tone_analyzer({
 	version_date: '2016-05-19',
 	sentences: false
 });
-
-app.use(express.static(__dirname + '/public'));
 
 app.get('/tones', function(request, response){
 
