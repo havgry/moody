@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/magnushavgry/moody#readme",
   "dependencies": {
+    "chart.js": "^2.4.0",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "normalize.css": "^5.0.0",
