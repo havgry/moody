@@ -8,29 +8,49 @@
 	var getTones = function(success) {
 
 		var inputValue = inputElement.value;
-		var encodedValue = encodeURI(inputValue);
 
-		var xhr = new XMLHttpRequest();
-		xhr.open('GET', '/tones?text=' + encodedValue);
-		xhr.onload = function () {
-			if (xhr.status === 200) {
-		    	success(JSON.parse(xhr.responseText));
-			}
-		};
-		xhr.send();
+		// Make sure the input value is something slightly meaningful
+		if (inputValue.length > 0 && inputValue.indexOf(' ') >= 0) {
+			var encodedValue = encodeURI(inputValue);
+
+			var xhr = new XMLHttpRequest();
+			xhr.open('GET', '/tones?text=' + encodedValue);
+			xhr.onload = function () {
+				if (xhr.status === 200) {
+			    	success(JSON.parse(xhr.responseText));
+				}
+			};
+			xhr.send();
+		}
+
 	};
 
-	var drawChart = function(data) {
+	var mapData = function(data) {
+		
+		var mappedData = {
+			labels: [],
+			data: []
+		};
+
+		data.forEach(function(dataPoint){
+			mappedData.labels.push(dataPoint.tone_name);
+			mappedData.data.push(dataPoint.score);
+		});
+
+		return mappedData;
+	};
+
+	var drawChart = function(chartData) {
 
 		Chart.defaults.global.defaultFontFamily = '"Roboto", sans-serif';
 
 		chart = new Chart(chartElement, {
 		    type: 'bar',
 		    data: {
-		        labels: ['Anger', 'Disgust', 'Fear', 'Joy', 'Sadness'],
+		        labels: chartData.labels,
 		        datasets: [{
 		            label: 'Score',
-		            data: [0.25482, 0.345816, 0.121116, 0.078903, 0.199345],
+		            data: chartData.data,
 		            backgroundColor: ['#ed796c', '#4f9cd0', '#f2c67d', '#80ced1', '#9ba6c6']
 		        }]
 		    },
@@ -40,9 +60,6 @@
 		            	display: false,
 		                ticks: {
 		                    beginAtZero: true
-		                },
-		                gridLines: {
-		                	display: false
 		                }
 		            }],
 		            xAxes: [{
@@ -71,14 +88,26 @@
 		});
 	};
 
+	var updateChart = function(chartData) {
+		chart.data.label = chartData.labels;
+		chart.data.datasets[0].data = chartData.data;
+		chart.update();
+	};
+
 	inputElement.onkeypress = function(event) {
 	    var event = event || window.event;
 	    var keyCode = event.which || event.keyCode;
 
 	    if ( keyCode === 13 ) {
 			getTones(function (response) {
-				console.log(response);
-				drawChart();
+				var mappedData = mapData(response);
+
+				if (chart) {
+					updateChart(mappedData);
+				} else {
+					drawChart(mappedData);
+				}
+
 			});
 	    }
 	};

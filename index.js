@@ -31,7 +31,7 @@ app.get('/tones', function(request, response){
 				if (error) {
 					response.status(error.code).send({ error: error.error });
 				} else {
-					response.send(data);
+					response.send(data.document_tone.tone_categories[0].tones);
 				}
 			}
 		);	
