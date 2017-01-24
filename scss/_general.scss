@@ -11,12 +11,21 @@ body {
     background: #fbfbfb;
 }
 
-* {
+*,
+::before,
+::after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-		-webkit-font-smoothing: antialiased !important;
-		-moz-osx-font-smoothing: grayscale;
-	}
+}
+
+* {
+	-webkit-font-smoothing: subpixel-antialiased !important;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 #inputty {
