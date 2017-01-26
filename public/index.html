@@ -12,10 +12,12 @@
         <![endif]-->
     </head>
     <body class="align-vertically">
-        <div class="wrapper">
-            <canvas id="chart" class="not-initialized"></canvas>
+        <div class="outer-wrapper">
+            <div class="chart-wrapper chart-not-initialized hidden">
+                <canvas class="chart"></canvas>
+            </div>
             <div class="input-wrapper">
-                <input id="inputty" type="text" placeholder="Pour your heart out and hit enter..." />
+                <input type="text" placeholder="Pour your heart out and hit enter..." />
                 <div class="loader"></div>
             </div>
         </div>

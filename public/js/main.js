@@ -1,9 +1,10 @@
 'use strict';
-(function(){
+(function () {
 
-	var inputElement = document.getElementById('inputty');
+	var inputElement = document.querySelector('input');
 	var inputContainerElement = document.querySelector('.input-wrapper');
-	var chartElement = document.getElementById('chart');
+	var chartElement = document.querySelector('.chart');
+	var chartContainerElement = document.querySelector('.chart-wrapper');
 	var chart;
 
 	var getTones = function(success) {
@@ -48,49 +49,56 @@
 	var drawChart = function(chartData) {
 
 		Chart.defaults.global.defaultFontFamily = '"Roboto", sans-serif';
+		Chart.defaults.global.maintainAspectRatio = false;
 
-		chart = new Chart(chartElement, {
-		    type: 'bar',
-		    data: {
-		        labels: chartData.labels,
-		        datasets: [{
-		            label: 'Score',
-		            data: chartData.data,
-		            backgroundColor: ['#ed796c', '#4f9cd0', '#f2c67d', '#80ced1', '#9ba6c6']
-		        }]
-		    },
-		    options: {
-		        scales: {
-		            yAxes: [{
-		            	display: false,
-		                ticks: {
-		                    beginAtZero: true
+		chartContainerElement.classList.remove('hidden');
+
+		setTimeout(function () {
+
+			chart = new Chart(chartElement, {
+			    type: 'bar',
+			    data: {
+			        labels: chartData.labels,
+			        datasets: [{
+			            label: 'Score',
+			            data: chartData.data,
+			            backgroundColor: ['#ed796c', '#4f9cd0', '#f2c67d', '#80ced1', '#9ba6c6']
+			        }]
+			    },
+			    options: {
+			        scales: {
+			            yAxes: [{
+			            	display: false,
+			                ticks: {
+			                    beginAtZero: true
+			                }
+			            }],
+			            xAxes: [{
+			                gridLines: {
+			                	display: false
+			                }
+			            }]
+			        },
+			        legend: {
+			        	display: false
+			        },
+			        animation: {
+				        onComplete: function () {
+			        		chartContainerElement.classList.remove('chart-not-initialized');
+					    }
+			    	},
+			    	tooltips: {
+			    		cornerRadius: 0,
+		                callbacks: {
+		                    label: function(tooltipItems) { 
+		                        return Math.round(tooltipItems.yLabel * 100) + '%';
+		                    }
 		                }
-		            }],
-		            xAxes: [{
-		                gridLines: {
-		                	display: false
-		                }
-		            }]
-		        },
-		        legend: {
-		        	display: false
-		        },
-		        animation: {
-			        onComplete: function () {
-		        		this.chart.canvas.classList.remove('not-initialized');
-				    }
-		    	},
-		    	tooltips: {
-		    		cornerRadius: 0,
-	                callbacks: {
-	                    label: function(tooltipItems) { 
-	                        return Math.round(tooltipItems.yLabel * 100) + '%';
-	                    }
-	                }
-		    	}
-		    }
-		});
+			    	}
+			    }
+			});
+
+		}, 500);
 	};
 
 	var updateChart = function(chartData) {

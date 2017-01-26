@@ -28,7 +28,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-#inputty {
+input {
 	width: 100%;
 	border: 1px solid #ccc;
     font-size: 1em;
@@ -42,19 +42,22 @@ body {
 	}
 }
 
-#chart {
-	height: 0;
+.chart-wrapper {
+	height: 30vh;
 	width: 100%;
+    &.hidden {
+        height: 0;
+    }
 }
 
 // Do not animate chart height after initial reveal
-.not-initialized {
-	transition: height 1000ms;
+.chart-not-initialized {
+	transition: height 500ms;
 }
 
-.wrapper {
+.outer-wrapper {
 	width: 60%;
-	margin: 0 20%;
+	margin: -1em 20% 0;
 }
 
 $placeholder-color: #ccc;
@@ -87,13 +90,7 @@ $placeholder-color: #ccc;
 
 .input-wrapper {
 	position: relative;
-	// The height attribute is added to the canvas
-	// once the chart is being drawn so we might as
-	// well use that instead of adding a very specific
-	// class simply for applying some margin.
-	#chart[height] ~ & {
-		margin-top: 2em;
-	}
+	margin-top: 2em;
 	.loader {
 		right: 2em;
 	}
