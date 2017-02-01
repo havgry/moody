@@ -1,0 +1,12 @@
+.chart-wrapper {
+	height: 30vh;
+	width: 100%;
+    &.hidden {
+        height: 0;
+    }
+}
+
+// Do not animate chart height after initial reveal
+.chart-not-initialized {
+	transition: height 500ms;
+}

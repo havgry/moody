@@ -1,4 +1,5 @@
 $dot-size: 0.4em;
+$animation-name: pulse;
 
 .loading-wrapper {
     opacity: 0;
@@ -27,16 +28,16 @@ $dot-size: 0.4em;
     height: $dot-size;
     border-radius: 50%;
     background: #ccc;
-    animation: pulse 850ms infinite ease-in-out;
+    animation: $animation-name 850ms infinite ease-in-out;
     &:nth-child(1) {
-        animation-delay: -.2s;
+        animation-delay: -200ms;
     }
     &:nth-child(2) {
-        animation-delay: -.1s;
+        animation-delay: -100ms;
     }
 }
 
-@include keyframes(pulse){
+@include keyframes($animation-name){
     0%, 100%, 80% {
         opacity: 0;
         transform: scale(0.8);
