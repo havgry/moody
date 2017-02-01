@@ -5,6 +5,7 @@
 	var inputContainerElement = document.querySelector('.input-wrapper');
 	var chartElement = document.querySelector('.chart');
 	var chartContainerElement = document.querySelector('.chart-wrapper');
+	var loadingIndicatorElement = inputContainerElement.querySelector('.loading-wrapper');
 	var chart;
 
 	var getTones = function(success) {
@@ -14,14 +15,14 @@
 		// Make sure the input value is something slightly meaningful
 		if (inputValue.length > 0 && inputValue.indexOf(' ') >= 0) {
 
-			inputContainerElement.classList.add('loading');
+			loadingIndicatorElement.classList.add('loading-active');
 
 			var encodedValue = encodeURI(inputValue);
 
 			var xhr = new XMLHttpRequest();
 			xhr.open('GET', '/tones?text=' + encodedValue);
 			xhr.onload = function () {
-				inputContainerElement.classList.remove('loading');
+				loadingIndicatorElement.classList.remove('loading-active');
 				if (xhr.status === 200) {
 			    	success(JSON.parse(xhr.responseText));
 				}

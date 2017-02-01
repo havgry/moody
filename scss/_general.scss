@@ -32,7 +32,7 @@ input {
 	width: 100%;
 	border: 1px solid #ccc;
     font-size: 1em;
-    padding: 0.6em 4em 0.6em 0.8em;
+    padding: 0.6em 3.5em 0.6em 0.8em;
     box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
     transition: box-shadow 200ms, border-color 200ms, margin-top 200ms;
 	&:focus {
@@ -91,51 +91,7 @@ $placeholder-color: #ccc;
 .input-wrapper {
 	position: relative;
 	margin-top: 2em;
-	.loader {
-		right: 2em;
+	.loading-wrapper {
+		right: 1em;
 	}
-	&.loading .loader {
-		opacity: 1;
-	}
-}
-
-// Inspired by loader (https://github.com/jovey-zheng/loader)
-$loader-animation-name: basic-fade;
-$loader-color: #808080;
-
-.loader {
-    $size: 0.4em;
-    $animation-duration: 250ms;
-    $animation-base: $animation-duration * 3 $loader-animation-name infinite cubic-bezier(0.78, 0.14, 0.15, 0.86);
-    position: absolute;
-    @include animation($animation-base $animation-duration / 2);
-    transition: opacity $animation-duration / 2;
-    opacity: 0;
-    top: 50%;
-    margin-top: -$size / 2;
-    &,
-    &::before,
-    &::after { 
-        width: $size;
-        height: $size;
-        border-radius: 100%;
-    }
-    &::before,
-    &::after {
-        position: absolute;
-        content: '';
-        @include animation($animation-base);
-    }
-    &::before {
-        right: -$size * 2;
-        @include animation-delay($animation-duration);
-    }
-    &::after {
-        left: -$size * 2;
-    }
-}
-
-@include keyframes($loader-animation-name){
-    #{0%} { background-color: rgba($loader-color, 1); }
-    #{100%} { background-color: rgba($loader-color, 0); }
 }
