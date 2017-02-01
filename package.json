@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node-sass --output-style compressed --output public/css scss"
+    "postinstall": "node-sass --output public/css scss && postcss --use autoprefixer public/css/*.css --dir public/css"
   },
   "repository": {
     "type": "git",
@@ -24,10 +24,13 @@
   },
   "homepage": "https://github.com/magnushavgry/moody#readme",
   "dependencies": {
+    "autoprefixer": "^6.7.2",
     "chart.js": "^2.4.0",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "normalize.css": "^5.0.0",
+    "postcss": "^5.2.11",
+    "postcss-cli": "^2.6.0",
     "watson-developer-cloud": "^2.15.2"
   },
   "devDependencies": {
