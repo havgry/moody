@@ -11,8 +11,8 @@ input {
 }
 
 body {
-    font-size: 2vw;
-    background: #fbfbfb;
+  font-size: 2vw;
+  background: #fbfbfb;
 }
 
 *,
@@ -31,22 +31,12 @@ body {
 }
 
 .align-vertically {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
-::-webkit-input-placeholder {
-    color: $placeholder-color;
-}
-:-moz-placeholder {
-   color: $placeholder-color;
-   opacity: 1;
-}
-::-moz-placeholder {
-   color: $placeholder-color;
-   opacity: 1;
-}
-:-ms-input-placeholder {
-   color: $placeholder-color;
+::placeholder {
+  color: $placeholder-color;
+  opacity: 1; // Override Firefox opacity
 }
