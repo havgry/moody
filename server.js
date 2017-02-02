@@ -9,7 +9,6 @@ dotenv.load();
 
 // Serve static files
 app.use(express.static(__dirname + '/public'));
-app.use('/css/normalize.css', express.static(__dirname + '/node_modules/normalize.css/normalize.css'));
 app.use('/js/chart.js', express.static(__dirname + '/node_modules/chart.js/dist/Chart.js'));
 
 var toneAnalyzer = watson.tone_analyzer({
