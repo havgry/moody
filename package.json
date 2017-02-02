@@ -4,13 +4,13 @@
   "description": "Mood detection thingie with Watson",
   "main": "server.js",
   "scripts": {
-    "browsersync:watch": "browser-sync start --files server.js public/* --proxy localhost:1337 --no-notify",
-    "css:compile": "node-sass scss --output public/css",
-    "css:prefix": "postcss --use autoprefixer public/css/*.css --dir public/css",
-    "css:clean": "cleancss public/css/main.css --output public/css/main.css --level 2",
-    "css:watch": "node-sass --watch scss --output public/css --output-style nested --source-comments",
-    "postinstall": "css:compile && css:prefix && css:clean",
-    "dev": "css:compile && css:watch && browsersync:watch"
+    "browsersync-watch": "browser-sync start --files server.js public/* --proxy localhost:1337 --no-notify",
+    "css-compile": "node-sass scss --output public/css",
+    "css-prefix": "postcss --use autoprefixer public/css/*.css --dir public/css",
+    "css-clean": "cleancss public/css/main.css --output public/css/main.css --level 2",
+    "css-watch": "node-sass --watch scss --output public/css --output-style nested --source-comments",
+    "postinstall": "npm run css-compile && npm run css-prefix && npm run css-clean",
+    "dev": "npm run css-compile && concurrently \"npm run css-watch\" \"npm run browsersync-watch\""
   },
   "repository": {
     "type": "git",
@@ -29,18 +29,19 @@
   },
   "homepage": "https://github.com/magnushavgry/moody#readme",
   "dependencies": {
-    "autoprefixer": "^6.7.2",
     "chart.js": "^2.4.0",
+    "express": "^4.14.1",
+    "watson-developer-cloud": "^2.15.5"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.7.2",
     "clean-css-cli": "^4.0.0",
     "dotenv": "^4.0.0",
-    "express": "^4.14.1",
     "node-sass": "^4.5.0",
     "normalize.css": "^5.0.0",
     "postcss": "^5.2.11",
     "postcss-cli": "^2.6.0",
-    "watson-developer-cloud": "^2.15.5"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.18.7"
+    "browser-sync": "^2.18.7",
+    "concurrently": "^3.1.0"
   }
 }
