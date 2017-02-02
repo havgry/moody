@@ -4,7 +4,7 @@
   "description": "Mood detection thingie with Watson",
   "main": "server.js",
   "scripts": {
-    "browsersync:watch": "browser-sync start --files server.js, public/* --proxy localhost:1337 --no-notify",
+    "browsersync:watch": "browser-sync start --files server.js public/* --proxy localhost:1337 --no-notify",
     "css:compile": "node-sass scss --output public/css",
     "css:prefix": "postcss --use autoprefixer public/css/*.css --dir public/css",
     "css:clean": "cleancss public/css/main.css --output public/css/main.css --level 2",
