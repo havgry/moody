@@ -1,6 +1,8 @@
 'use strict';
 (function () {
 
+	var Chart = require('chart.js');
+
 	var inputElement = document.querySelector('input');
 	var inputContainerElement = document.querySelector('.input-wrapper');
 	var chartElement = document.querySelector('.chart');

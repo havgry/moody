@@ -8,8 +8,7 @@ var watson = require('watson-developer-cloud');
 dotenv.load();
 
 // Serve static files
-app.use(express.static(__dirname + '/public'));
-app.use('/js/chart.js', express.static(__dirname + '/node_modules/chart.js/dist/Chart.js'));
+app.use(express.static(__dirname + '/assets'));
 
 var toneAnalyzer = watson.tone_analyzer({
 	username: process.env.WATSON_TONE_ANALYZER_USERNAME,
@@ -23,7 +22,7 @@ var toneAnalyzer = watson.tone_analyzer({
 });
 
 app.get('/tones', function(request, response){
-
+	console.log(response);
 	var text = request.query.text;
 
 	if (text && text.length > 0) {

@@ -39,8 +39,8 @@ jspm_packages
 # DotEnv
 .env
 
-# Compiled CSS
-public/css/*
+# Compiled assets
+assets/dist/*
 
 # Sublime Text projects
 *.sublime-project

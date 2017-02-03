@@ -4,12 +4,13 @@
   "description": "Mood detection thingie with Watson",
   "main": "server.js",
   "scripts": {
-    "browsersync-watch": "browser-sync start --files server.js public/* --proxy localhost:1337 --no-notify",
-    "css-compile": "node-sass scss --output public/css",
-    "css-prefix": "postcss --use autoprefixer public/css/*.css --dir public/css",
-    "css-clean": "cleancss public/css/main.css --output public/css/main.css --level 2",
-    "css-watch": "node-sass --watch scss --output public/css --output-style nested --source-comments",
-    "postinstall": "npm run css-compile && npm run css-prefix && npm run css-clean",
+    "browsersync-watch": "browser-sync start --files server.js assets/dist/* assets/index.html --proxy localhost:1337 --no-notify",
+    "css-compile": "node-sass assets/scss --output assets/dist/css",
+    "css-prefix": "postcss --use autoprefixer assets/dist/css/main.css --dir assets/dist/css",
+    "css-clean": "cleancss assets/dist/css/main.css --output assets/dist/css/main.css --level 2",
+    "css-watch": "node-sass --watch assets/scss --output assets/dist/css --output-style nested --source-comments",
+    "js-bundle": "browserify assets/js/main.js -o assets/dist/js/main.js",
+    "postinstall": "concurrently \"npm run css-compile && npm run css-prefix && npm run css-clean\" \"npm run js-bundle\"",
     "dev": "npm run css-compile && concurrently \"npm run css-watch\" \"npm run browsersync-watch\""
   },
   "repository": {
