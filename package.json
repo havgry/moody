@@ -3,15 +3,25 @@
   "version": "1.0.0",
   "description": "Mood detection thingie with Watson",
   "main": "server.js",
+  "watch": {
+    "html-preprocess-watch": {
+      "patterns": "assets/html/index.html",
+      "quiet": false
+    }
+  },
   "scripts": {
-    "browsersync-watch": "browser-sync start --files server.js assets/dist/* assets/index.html --proxy localhost:1337 --no-notify",
-    "css-compile": "node-sass assets/scss --output assets/dist/css",
-    "css-prefix": "postcss --use autoprefixer assets/dist/css/main.css --dir assets/dist/css",
-    "css-clean": "cleancss assets/dist/css/main.css --output assets/dist/css/main.css --level 2",
+    "browsersync-watch": "browser-sync start --files server.js assets/dist/* --proxy localhost:1337 --no-notify",
+    "css-compile-prefix": "node-sass assets/scss --output assets/dist/css && postcss --use autoprefixer assets/dist/css/main.css --dir assets/dist/css",
+    "css-minify": "cleancss assets/dist/css/main.css --output assets/dist/css/main.min.css --level 2",
     "css-watch": "node-sass --watch assets/scss --output assets/dist/css --output-style nested --source-comments",
-    "js-bundle": "browserify assets/js/main.js -o assets/dist/js/main.js",
-    "postinstall": "concurrently \"npm run css-compile && npm run css-prefix && npm run css-clean\" \"npm run js-bundle\"",
-    "dev": "npm run css-compile && concurrently \"npm run css-watch\" \"npm run browsersync-watch\""
+    "js-bundle": "browserify assets/js/main.js --outfile assets/dist/js/main.js",
+    "js-bundle-watch": "watchify assets/js/main.js --outfile 'exorcist assets/dist/js/main.js.map > assets/dist/js/main.js' --debug",
+    "html-preprocess": "preprocess assets/html/index.html --output-file assets/dist/index.html",
+    "html-preprocess-watch": "NODE_ENV=development npm run html-preprocess",
+    "build": "mkdirp assets/dist/js assets/dist/css && concurrently 'npm run css-compile-prefix' 'npm run js-bundle' 'npm run html-preprocess'",
+    "watch": "concurrently 'npm run css-watch' 'npm run js-bundle-watch' 'npm run browsersync-watch' 'npm-watch'",
+    "postinstall": "npm run build && npm run css-minify",
+    "dev": "NODE_ENV=development npm run build && npm run watch"
   },
   "repository": {
     "type": "git",
@@ -40,9 +50,16 @@
     "clean-css-cli": "^4.0.0",
     "concurrently": "^3.1.0",
     "dotenv": "^4.0.0",
+    "exorcist": "^0.4.0",
+    "mkdirp": "^0.5.1",
     "node-sass": "^4.5.0",
     "normalize.css": "^5.0.0",
     "postcss": "^5.2.11",
-    "postcss-cli": "^2.6.0"
+    "postcss-cli": "^2.6.0",
+    "watchify": "^3.9.0",
+    "browserify": "^14.0.0",
+    "preprocess": "^3.1.0",
+    "preprocess-cli-2": "^2.0.0",
+    "npm-watch": "^0.1.8"
   }
 }

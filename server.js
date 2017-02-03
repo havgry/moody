@@ -8,7 +8,7 @@ var watson = require('watson-developer-cloud');
 dotenv.load();
 
 // Serve static files
-app.use(express.static(__dirname + '/assets'));
+app.use(express.static(__dirname + '/assets/dist'));
 
 var toneAnalyzer = watson.tone_analyzer({
 	username: process.env.WATSON_TONE_ANALYZER_USERNAME,
