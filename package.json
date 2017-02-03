@@ -14,7 +14,7 @@
     "css-compile-prefix": "node-sass assets/scss --output assets/dist/css && postcss --use autoprefixer assets/dist/css/main.css --dir assets/dist/css",
     "css-minify": "cleancss assets/dist/css/main.css --output assets/dist/css/main.min.css --level 2",
     "css-watch": "node-sass --watch assets/scss --output assets/dist/css --output-style nested --source-comments",
-    "js-bundle": "browserify assets/js/main.js --outfile assets/dist/js/main.js",
+    "js-bundle": "browserify assets/js/main.js | uglifyjs > assets/dist/js/main.min.js",
     "js-bundle-watch": "watchify assets/js/main.js --outfile 'exorcist assets/dist/js/main.js.map > assets/dist/js/main.js' --debug",
     "html-preprocess": "preprocess assets/html/index.html --output-file assets/dist/index.html",
     "html-preprocess-watch": "NODE_ENV=development npm run html-preprocess",
@@ -60,6 +60,7 @@
     "postcss": "^5.2.11",
     "postcss-cli": "^2.6.0",
     "watchify": "^3.9.0",
-    "npm-watch": "^0.1.8"
+    "npm-watch": "^0.1.8",
+    "uglify-js": "2.7.5"
   }
 }
