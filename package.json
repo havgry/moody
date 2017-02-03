@@ -6,7 +6,7 @@
   "watch": {
     "html-preprocess-watch": {
       "patterns": "assets/html/index.html",
-      "quiet": false
+      "quiet": true
     }
   },
   "scripts": {
@@ -42,7 +42,10 @@
   "dependencies": {
     "chart.js": "^2.4.0",
     "express": "^4.14.1",
-    "watson-developer-cloud": "^2.15.5"
+    "watson-developer-cloud": "^2.15.5",
+    "preprocess": "^3.1.0",
+    "preprocess-cli-2": "^2.0.0",
+    "browserify": "^14.0.0",
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -57,9 +60,6 @@
     "postcss": "^5.2.11",
     "postcss-cli": "^2.6.0",
     "watchify": "^3.9.0",
-    "browserify": "^14.0.0",
-    "preprocess": "^3.1.0",
-    "preprocess-cli-2": "^2.0.0",
     "npm-watch": "^0.1.8"
   }
 }
