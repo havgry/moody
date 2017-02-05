@@ -18,7 +18,8 @@
     "js-bundle-watch": "watchify assets/js/main.js --outfile 'exorcist assets/dist/js/main.js.map > assets/dist/js/main.js' --debug",
     "html-preprocess": "preprocess assets/html/index.html --output-file assets/dist/index.html",
     "html-preprocess-watch": "NODE_ENV=development npm run html-preprocess",
-    "build": "mkdirp assets/dist/js assets/dist/css && concurrently 'npm run css-compile' 'npm run js-bundle' 'npm run html-preprocess'",
+    "mkdir": "rm -rf assets/dist && mkdirp assets/dist/js assets/dist/css",
+    "build": "npm run mkdir && concurrently 'npm run css-compile' 'npm run js-bundle' 'npm run html-preprocess'",
     "watch": "concurrently 'npm run css-watch' 'npm run js-bundle-watch' 'npm run browsersync' 'npm-watch'",
     "postinstall": "npm run build && npm run css-minify",
     "dev": "NODE_ENV=development npm run build && npm run watch"
