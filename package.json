@@ -10,16 +10,16 @@
     }
   },
   "scripts": {
-    "browsersync-watch": "browser-sync start --files server.js assets/dist/* --proxy localhost:1337 --no-notify",
-    "css-compile-prefix": "node-sass assets/scss --output assets/dist/css && postcss --use autoprefixer assets/dist/css/main.css --dir assets/dist/css",
+    "browsersync": "browser-sync start --files server.js assets/dist/* --proxy localhost:1337 --no-notify",
+    "css-compile": "node-sass assets/scss --output assets/dist/css && postcss --use autoprefixer assets/dist/css/main.css --dir assets/dist/css",
     "css-minify": "cleancss assets/dist/css/main.css --output assets/dist/css/main.min.css --level 2",
     "css-watch": "node-sass --watch assets/scss --output assets/dist/css --output-style nested --source-comments",
     "js-bundle": "browserify assets/js/main.js | uglifyjs > assets/dist/js/main.min.js",
     "js-bundle-watch": "watchify assets/js/main.js --outfile 'exorcist assets/dist/js/main.js.map > assets/dist/js/main.js' --debug",
     "html-preprocess": "preprocess assets/html/index.html --output-file assets/dist/index.html",
     "html-preprocess-watch": "NODE_ENV=development npm run html-preprocess",
-    "build": "mkdirp assets/dist/js assets/dist/css && concurrently 'npm run css-compile-prefix' 'npm run js-bundle' 'npm run html-preprocess'",
-    "watch": "concurrently 'npm run css-watch' 'npm run js-bundle-watch' 'npm run browsersync-watch' 'npm-watch'",
+    "build": "mkdirp assets/dist/js assets/dist/css && concurrently 'npm run css-compile' 'npm run js-bundle' 'npm run html-preprocess'",
+    "watch": "concurrently 'npm run css-watch' 'npm run js-bundle-watch' 'npm run browsersync' 'npm-watch'",
     "postinstall": "npm run build && npm run css-minify",
     "dev": "NODE_ENV=development npm run build && npm run watch"
   },
