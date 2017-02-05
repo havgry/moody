@@ -40,7 +40,7 @@ jspm_packages
 .env
 
 # Compiled assets
-assets/dist/*
+dist/*
 
 # Sublime Text projects
 *.sublime-project
