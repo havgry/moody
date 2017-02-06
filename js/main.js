@@ -40,14 +40,14 @@
 	};
 
 	var mapData = function(data) {
-		
+
 		var mappedData = {
 			labels: [],
 			data: []
 		};
 
 		data.forEach(function(dataPoint){
-			mappedData.labels.push(dataPoint.tone_name);
+			mappedData.labels.push(dataPoint.name);
 			mappedData.data.push(dataPoint.score);
 		});
 

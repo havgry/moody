@@ -6,7 +6,10 @@ var Schema = mongoose.Schema;
 var textSchema = new Schema(
 	{
 		content: String,
-		primary_tone: String,
+		tones: [{
+			score: Number,
+			name: String
+		}],
 		created_at: Date
 	},
 	{

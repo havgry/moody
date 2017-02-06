@@ -5,17 +5,24 @@ var Text = require('./models/text');
 
 module.exports = function(text, tones) {
 
-	var text = new Text({
+	var textObject = new Text({
 		content: text,
-		primary_tone: _.maxBy(tones, 'score').tone_name,
+		tones: _.map(tones, function(tone) {
+			return {
+				score: tone.score,
+				name: tone.tone_name
+			};
+		}),
 		created_at: new Date()
 	});
 
-	text.save(function(error) {
+	textObject.save(function(error) {
 		if (error) {
 			throw error;
 		}
 		console.log('Text saved');
-	})
+	});
+
+	return textObject;
 
 };
