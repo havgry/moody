@@ -41,13 +41,16 @@
   },
   "homepage": "https://github.com/magnushavgry/moody#readme",
   "dependencies": {
+    "bluebird": "^3.4.7",
+    "browserify": "^14.0.0",
     "chart.js": "^2.4.0",
     "express": "^4.14.1",
-    "watson-developer-cloud": "^2.15.5",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.8.1",
     "preprocess": "^3.1.0",
     "preprocess-cli-2": "^2.0.0",
-    "browserify": "^14.0.0",
-    "uglify-js": "2.7.5"
+    "uglify-js": "2.7.5",
+    "watson-developer-cloud": "^2.15.5"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

@@ -7,4 +7,10 @@ Mood detection thingie with Watson
 $ npm setup.js
 ```
 
-Add Watson API service credentials to the created `.env` file.
+Add Watson API service credentials and MongoDB connection string to the created `.env` file:
+
+`WATSON_TONE_ANALYZER_USERNAME`
+
+`WATSON_TONE_ANALYZER_PASSWORD`
+
+`MONGODB_URI`
