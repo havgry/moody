@@ -2,13 +2,28 @@
 (function () {
 
 	var Chart = require('chart.js');
+	var io = require('socket.io-client');
 
+	var socket = io.connect();
 	var inputElement = document.querySelector('input');
 	var inputContainerElement = document.querySelector('.input-wrapper');
 	var chartElement = document.querySelector('.chart');
 	var chartContainerElement = document.querySelector('.chart-wrapper');
 	var loadingIndicatorElement = inputContainerElement.querySelector('.loading-wrapper');
 	var chart;
+
+	socket.on('text', function(textObject) {
+		var mappedData = mapData(textObject.tones);
+
+		if (chart) {
+			updateChart(mappedData);
+		} else {
+			drawChart(mappedData);
+		}
+
+		loadingIndicatorElement.classList.remove('loading-active');
+
+	});
 
 	var getTones = function(success) {
 
@@ -19,17 +34,7 @@
 
 			loadingIndicatorElement.classList.add('loading-active');
 
-			var encodedValue = encodeURI(inputValue);
-
-			var xhr = new XMLHttpRequest();
-			xhr.open('GET', '/tones?text=' + encodedValue);
-			xhr.onload = function () {
-				loadingIndicatorElement.classList.remove('loading-active');
-				if (xhr.status === 200) {
-			    	success(JSON.parse(xhr.responseText));
-				}
-			};
-			xhr.send();
+			socket.emit('text', inputValue);
 		}
 
 	};
@@ -115,16 +120,7 @@
 	    var keyCode = event.which || event.keyCode;
 
 	    if ( keyCode === 13 ) {
-			getTones(function (response) {
-				var mappedData = mapData(response);
-
-				if (chart) {
-					updateChart(mappedData);
-				} else {
-					drawChart(mappedData);
-				}
-
-			});
+			getTones();
 	    }
 	};
 

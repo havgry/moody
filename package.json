@@ -49,6 +49,8 @@
     "mongoose": "^4.8.1",
     "preprocess": "^3.1.0",
     "preprocess-cli-2": "^2.0.0",
+    "socket.io": "^1.7.2",
+    "socket.io-client": "^1.7.2",
     "uglify-js": "2.7.5",
     "watson-developer-cloud": "^2.15.5"
   },

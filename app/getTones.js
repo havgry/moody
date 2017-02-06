@@ -1,9 +1,6 @@
 'use strict';
 
 var dotenv = require('dotenv').load();
-var express = require('express');
-var app = express();
-
 var watson = require('watson-developer-cloud');
 var saveText = require('./saveText');
 
@@ -18,27 +15,18 @@ var toneAnalyzer = watson.tone_analyzer({
 	}
 });
 
-app.get('/tones', function(request, response) {
-
-	var text = request.query.text;
-
+module.exports = function(text, callback) {
 	if (text && text.length > 0) {
 		toneAnalyzer.tone(
 			{ text: text },
 			function(error, data) {
 				if (error) {
-					response.status(error.code).send({ error: error.error });
+					throw error;
 				} else {
-					var tones = data.document_tone.tone_categories[0].tones;
-					response.send(tones);
-					saveText(text, tones);
+					var textObject = saveText(text, data.document_tone.tone_categories[0].tones);
+					callback(textObject);
 				}
 			}
 		);
-	} else {
-		response.status(500).send({ error: 'A \'text\' query parameter is required' })
 	}
-
-});
-
-module.exports = app;
+};
