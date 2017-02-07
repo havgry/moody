@@ -16,10 +16,16 @@ mongoose.connect(process.env.MONGODB_URI);
 // Serve static files
 app.use(express.static(__dirname + '/dist'));
 
-io.on('connection', function(socket) {
+io.once('connection', function(socket) {
+
+	texts.getList(function(error, texts){
+		socket.emit('allTexts', texts);
+	});
+
 	socket.on('text', function(text) {
 		getTones(text, function(error, tones) {
 			socket.emit('text', tones);
+			socket.broadcast.emit('allTexts', []);
 			texts.save(text, tones);
 		});
 	});

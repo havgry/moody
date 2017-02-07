@@ -25,6 +25,10 @@
 
 	});
 
+	socket.on('allTexts', function(textObjects) {
+		console.log(textObjects);
+	});
+
 	var getTones = function(success) {
 
 		var inputValue = inputElement.value;

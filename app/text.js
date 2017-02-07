@@ -20,13 +20,20 @@ module.exports = {
 		textObject.save(function(error) {
 			if (error) {
 				callback(error);
+			} else {
+				console.log('Text saved');
+				callback(null, textObject);
 			}
-			console.log('Text saved');
-			callback(null, textObject);
 		});
 
 	},
-	get: function(callback) {
-		callback(null, []);
+	getList: function(callback) {
+		Text.find(function(error, texts){
+			if (error) {
+				callback(error);
+			} else {
+				callback(null, texts);
+			}
+		});
 	}
 };
