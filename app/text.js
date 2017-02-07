@@ -28,7 +28,7 @@ module.exports = {
 
 	},
 	getList: function(callback) {
-		Text.find(function(error, texts){
+		Text.find().sort({'created_at': -1}).limit(20).exec(function(error, texts){
 			if (error) {
 				callback(error);
 			} else {
