@@ -12,8 +12,8 @@
 	var loadingIndicatorElement = inputContainerElement.querySelector('.loading-wrapper');
 	var chart;
 
-	socket.on('text', function(textObject) {
-		var mappedData = mapData(textObject.tones);
+	socket.on('text', function(tones) {
+		var mappedData = mapData(tones);
 
 		if (chart) {
 			updateChart(mappedData);
@@ -47,7 +47,7 @@
 		};
 
 		data.forEach(function(dataPoint){
-			mappedData.labels.push(dataPoint.name);
+			mappedData.labels.push(dataPoint.tone_name);
 			mappedData.data.push(dataPoint.score);
 		});
 

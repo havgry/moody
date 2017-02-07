@@ -6,6 +6,7 @@ var app = express();
 var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
+var texts = require('./app/text');
 var getTones = require('./app/getTones');
 
 var mongoose = require('mongoose');
@@ -16,10 +17,10 @@ mongoose.connect(process.env.MONGODB_URI);
 app.use(express.static(__dirname + '/dist'));
 
 io.on('connection', function(socket) {
-	console.log(socket.id);
 	socket.on('text', function(text) {
-		getTones(text, function(textObject) {
-			socket.emit('text', textObject);
+		getTones(text, function(error, tones) {
+			socket.emit('text', tones);
+			texts.save(text, tones);
 		});
 	});
 });

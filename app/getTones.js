@@ -2,7 +2,6 @@
 
 var dotenv = require('dotenv').load();
 var watson = require('watson-developer-cloud');
-var saveText = require('./saveText');
 
 var toneAnalyzer = watson.tone_analyzer({
 	username: process.env.WATSON_TONE_ANALYZER_USERNAME,
@@ -21,10 +20,9 @@ module.exports = function(text, callback) {
 			{ text: text },
 			function(error, data) {
 				if (error) {
-					throw error;
+					callback(error);
 				} else {
-					var textObject = saveText(text, data.document_tone.tone_categories[0].tones);
-					callback(textObject);
+					callback(null, data.document_tone.tone_categories[0].tones);
 				}
 			}
 		);
