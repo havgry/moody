@@ -1,5 +1,3 @@
-$placeholder-color: #ccc;
-
 html,
 body {
 	height: 100%;
@@ -36,7 +34,11 @@ body {
   height: 100%;
 }
 
-::placeholder {
-  color: $placeholder-color;
-  opacity: 1; // Override Firefox opacity
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 0.1em solid currentColor;
+  &:hover {
+    color: #4f9cd0;
+  }
 }
