@@ -1,8 +1,10 @@
 .chart-wrapper {
 	height: 30vh;
 	width: 100%;
+	visibility: visible;
     &.hidden {
         height: 0;
+        visibility: hidden;
     }
 }
 
